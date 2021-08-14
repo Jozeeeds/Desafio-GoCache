@@ -1,7 +1,7 @@
 # TAREFA 2
 
 Pesquisei sobre o funcionamento do Let's Encrypt e comecei baixando os arquivos necessários para adquirir o certificado SSL, o primeiro comando utilizado foi **_yum install python-certbot-apache_**,
-pois dessa forma o processo de adquisicao do certificado é automatizado e mais fácil, no final utilizei o comando **_grep DocumentRoot /etc/httpd/conf.d/ssl.conf**_ para localizar onde os arquivos do wordpress iriam ficar.
+pois dessa forma o processo de adquisição do certificado é automatizado e mais fácil, no final utilizei o comando **_grep DocumentRoot /etc/httpd/conf.d/ssl.conf**_ para localizar onde os arquivos do wordpress iriam ficar.
 
 ## Adquirindo o certificado
 
@@ -13,13 +13,10 @@ verificar se os certificados e chaves estava no local correto, utilizei o comand
 - SSLCertificateKeyFile /etc/letsencrypt/live/jperlin.gocdn.com.br/privkey.pem
 - SSLCertificateChainFile /etc/letsencrypt/live/jperlin.gocdn.com.br/fullchain.pem
 
-todas as chaves estavam corretas e funcionando entao o que faltava era criar uma forma de atualizar essas chaves automaticamente, utilizei o comando **_crontab -e**_ para agendar um
-comando que renovasse semanalmente, o comando usado foi:
+todas as chaves estavam corretas e funcionando entao o que faltava era criar uma forma de atualizar/renovar essas chaves automaticamente, utilizei o comando **_crontab -e**_ com as seguintes medidas:
 
 **0 0 * * 0 /usr/bin/certbot renew >> /var/log/certbot-renew-lets.log**
 
-seria as **0** minutos, **0** horas (meia noite), * todos os dias do mes, * todos os meses do ano, **0** são domingos, entao o certbot irá renovar **todos os domingos a meia noite em ponto**
+seria as **0** minutos, **0** horas (meia noite), * todos os dias do mes, * todos os meses do ano, **0** são domingos, então o certbot irá renovar **todos os domingos a meia noite em ponto**
 
-A próxima etapa foi trocar os certificados padrão do apache pelos novos certificados gerados, um processo simples que era somente abrir e comentar as linhas com os certificados antigos, copiar
-e substituir com os novos certificados, era só uma questao de verificar se a syntaxe estava correta utilizando **_apachectl -t_**, reiniciar o apache utilizando **_systemctl restart httpd_** e 
-após esses processos o site já estava redirecionando pro HTTPS
+A próxima etapa foi trocar os certificados padrão do apache pelos novos certificados gerados, um processo simples que era somente abrir e comentar as linhas com os certificados antigos, copiar e substituir com os novos certificados, era só uma questao de verificar se a syntaxe estava correta utilizando **_apachectl -t_**, reiniciar o apache utilizando **_systemctl restart httpd_** e após esses processos o site já estava redirecionando pro HTTPS.
