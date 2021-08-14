@@ -1,2 +1,0 @@
-_Após_ conectar na máquina virtual a primeira coisa foi descobrir qual versão do linux estava sendo usada, utilizei cat /proc/version para isso, 
-logo após rodei yum update para garantir que tudo na máquina estava atualizado e pronto para começar a instalação do wordpress
