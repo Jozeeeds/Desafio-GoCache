@@ -8,5 +8,24 @@ utilizei o comando **_systemctl enable httpd mariadb_** para que o serviço fica
 Também foi utilizado o comando **_mysql_secure_installation_** para colocar uma senha no usuário root, que o usuário root pudesse somente conectar via localhost, no geral um comando
 para garantir que o banco fique mais seguro.
 
+## instalação do wordpress
 
+Antes de comecar a instalação era necessário ter um banco de dados para o wordpress, entao criei a base utilizando o comando **_mysql -u root -p_**,
+dentro do MariaDB os seguintes comandos foram utilizados:
+
+- CREATE DATABASE wordpress
+- GRANT ALL ON wordpress.* TO jose@localhost IDENTIFIED BY "senha";
+- FLUSH PRIVILEGES;
+
+Com o BD finalizado eu poderia iniciar a instalação do wordpress, para isso utilizei _wget_
+
+**_yum install wget_** wget para conseguir baixar o wordpress
+**_wget http://wordpress.org/latest.tar.gz_** baixar o wordpress compactado
+**_tar xfz latest.tar.gz_** descompactar o wordpress
+**_cp -rf wordpress/* /var/www/html/_** copiar os arquivos para a pasta do meu site
+**_ls /var/www/html/_** verificar se os arquivos haviam sido copiados corretamente
+
+Após instalar fui verificar no navegador se estava tudo correto e não aparecia nada, verifiquei o elemento da página e estava vazio como se o wordpress não havia sido instalado, entao fui até a pagina do PHP verificar os logs e constava _parse error syntax_, após pesquisar descobri que era necessário a versao mais recente do PHP pois a instalada na VM era a 5.4, entao foi necessário remover o PHP com o comando **_yum remove "php*" -y_**, fiz a atualizacao do remi repository com **_yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm_** e baixei a nova versao do php utilizando **_yum --enablerepo=remi-php74 install php php-pdo php-fpm php-gd php-mbstring php-mysql php-curl php-mcrypt php-json -y_**
+
+Com esses contratempos no passado acessei o wordpress pelo navegador e editei o arquivo **_wp-config.php_** para inserir as configurações necessárias 
 
