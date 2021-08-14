@@ -1,4 +1,6 @@
-Pesquisei na API da como fazer para o Wordpress funcionar na plataforma e o comando utilizado para isso foi **_curl -i https://api.gocache.com.br/v1/domain/jperlin.gocdn.com.br\
+Pesquisei na API da como fazer para o Wordpress funcionar na plataforma e o comando utilizado para isso foi:
+
+**_curl -i https://api.gocache.com.br/v1/domain/jperlin.gocdn.com.br\
 	 -X POST \
 	 -H 'GoCache-Token:<tokendaconta>' \
 	 -d'ignore_subdomain_verification_gocache=1'_**
