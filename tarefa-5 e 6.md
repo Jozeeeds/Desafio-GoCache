@@ -1,3 +1,5 @@
+# TAREFA 5 e 6
+
 A tarefa 5 e 6 foram as mais complexas do desafio, tentei usar soluções disponiveis em bibliotecas do linux porem nenhuma delas funcionava com os thresholds necessários,
 procurei alguns codigos no github e encontrei um que faz monitoramento de todos os itens importantes, mas ao invés de criar um log ele enviava um e-mail para alguém, como é necessário
 criar logs eu fiz algumas alterações simples no código para que ele gerasse logs ao invés de enviar um email, as alterações podem ser vistas aqui: https://github.com/Jozeeeds/watchsys/commits?author=Jozeeeds
